@@ -16,7 +16,10 @@ builder.Services.AddDataProtection()
 builder.Services.AddAuthorization();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        options.Cookie.Domain = ".company.local"; //Caddy: https://caddyserver.com/
+    });
 
 var app = builder.Build();
 
